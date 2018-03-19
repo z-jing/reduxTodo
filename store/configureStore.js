@@ -1,5 +1,7 @@
 import { createStore } from 'redux'
 import rootReducer from '../reducers'
+// 安装redux-devtools-extension的可视化工具。
+import { composeWithDevTools } from 'redux-devtools-extension'
 
 
 // 一个应用只有一个Store。一个应用只有一个Store。一个应用只有一个Store。
@@ -29,7 +31,11 @@ import rootReducer from '../reducers'
 
 export default function configureStore(initialState) {
 // 创建Store非常简单。createStore 有两个参数，Reducer 和 initialState。  将reducer的数据更新拿过来，然后如果没有更新的话就传一个默认值
-  const store = createStore(rootReducer, initialState)
+  const store = createStore(
+    rootReducer,
+    composeWithDevTools(),
+    initialState
+  )
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
